@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, DrawerContentStyleheet, Text, TouchableOpacity } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import DrawerContentStyle from '../styles/DrawerContentStyle';
 
 const DrawerList = [
     { icon: 'home-outline', label: 'Home', navigateTo: 'Home' },
@@ -38,19 +39,21 @@ const DrawerItems = props => {
     });
 };
 function DrawerContent(props) {
+
     const navigation = useNavigation();
     function signOut() {
         // AsyncStorage.setItem('isLoggedIn', '');
         // AsyncStorage.setItem('token', '');
         navigation.navigate("LoginUser")
 
-    }
+    };
+
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView {...props}>
-                <View style={styles.drawerContent}>
+                <View style={DrawerContentStyle.drawerContent}>
                     <TouchableOpacity activeOpacity={0.8}>
-                        <View style={styles.userInfoSection}>
+                        <View style={DrawerContentStyle.userInfoSection}>
                             <View style={{ flexDirection: 'row', marginTop: 15 }}>
                                 <Avatar.Image
                                     source={{
@@ -60,20 +63,20 @@ function DrawerContent(props) {
                                     style={{ marginTop: 5 }}
                                 />
                                 <View style={{ marginLeft: 10, flexDirection: 'column' }}>
-                                    <Text variant="titleMedium" style={styles.title}>osman</Text>
-                                    <Text style={styles.caption} numberOfLines={1}>
+                                    <Text variant="titleMedium" style={DrawerContentStyle.title}>osman</Text>
+                                    <Text style={DrawerContentStyle.caption} numberOfLines={1}>
                                         osman@gmail.com
                                     </Text>
                                 </View>
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <View style={styles.drawerSection}>
+                    <View style={DrawerContentStyle.drawerSection}>
                         <DrawerItems />
                     </View>
                 </View>
             </DrawerContentScrollView>
-            <View style={styles.bottomDrawerSection}>
+            <View style={DrawerContentStyle.bottomDrawerSection}>
                 <DrawerItem
                     onPress={() => signOut()}
                     icon={({ color, size }) => (
@@ -86,56 +89,3 @@ function DrawerContent(props) {
     );
 }
 export default DrawerContent;
-
-const styles = StyleSheet.create({
-    drawerContent: {
-        flex: 1,
-    },
-    userInfoSection: {
-        paddingLeft: 20,
-    },
-    title: {
-        fontSize: 16,
-        marginTop: 3,
-        fontWeight: 'bold',
-    },
-    caption: {
-        fontSize: 13,
-        lineHeight: 14,
-        // color: '#6e6e6e',
-        width: '100%',
-    },
-    row: {
-        marginTop: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    section: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        // marginRight: 15,
-    },
-    paragraph: {
-        fontWeight: 'bold',
-        marginRight: 3,
-    },
-    drawerSection: {
-        marginTop: 15,
-        borderBottomWidth: 0,
-        borderBottomColor: '#dedede',
-        borderBottomWidth: 1,
-    },
-    bottomDrawerSection: {
-        marginBottom: 15,
-        borderTopColor: '#dedede',
-        borderTopWidth: 1,
-        borderBottomColor: '#dedede',
-        borderBottomWidth: 1,
-    },
-    preference: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-    },
-});
