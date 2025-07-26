@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, DrawerContentStyleheet, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
