@@ -5,6 +5,7 @@ import { Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DrawerContentStyle from '../styles/DrawerContentStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DrawerList = [
     { icon: 'home-outline', label: 'Home', navigateTo: 'Home' },
@@ -42,10 +43,9 @@ function DrawerContent(props) {
 
     const navigation = useNavigation();
     function signOut() {
-        // AsyncStorage.setItem('isLoggedIn', '');
-        // AsyncStorage.setItem('token', '');
+        AsyncStorage.setItem('isLoggedIn', '');
+        AsyncStorage.setItem('token', '');
         navigation.navigate("LoginUser")
-
     };
 
     return (
@@ -87,5 +87,5 @@ function DrawerContent(props) {
             </View>
         </View>
     );
-}
+};
 export default DrawerContent;
